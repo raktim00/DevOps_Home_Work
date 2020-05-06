@@ -40,13 +40,14 @@
  
 ![Production_job_1](Screenshots/Production1.png)
 
- * Next go to the PollSCM and enter 5 starts with space in between them. This means in each minutes our Jenkins will keep checking the GitHub master branch and whenever any thing gets updated it will fetch that data. Next command run on the RHEL8 by jenkins which stores the master branch data into the production folder.
+ * Next go to the PollSCM and enter 5 starts with space in between them. This means in each minutes our Jenkins will keep checking the GitHub master branch and whenever any thing gets updated it will fetch that data. Next command run on the RHEL8 by jenkins which stores the master branch data into the production folder. Here is the command used in the execute shell of Production :
+ https://github.com/raktim00/DevOps_Home_Work/blob/master/Production_execute_shell_code
  
 ![Production_job_2](Screenshots/Production2.png)
 
 ### 4. Creating the Production Deployment Job in Jenkins :
 
- * Here at first we have to select build trigger and then "Build after other project build" option and have to provide the production job name. This means as soon as Production Job completes The Deployment Job will start automatically. Next we have to provide a Linux code which gonna start our deployment docker environment. In this code we are allowing the docker container to fetch the data from our production folder where we are pulling our master branch data. Next we are allowing PATing so that we can connect to the container from outside of RHEL8 using port number 8082.
+ * Here at first we have to select build trigger and then "Build after other project build" option and have to provide the production job name. This means as soon as Production Job completes The Deployment Job will start automatically. Next we have to provide a Linux code which gonna start our deployment docker environment. In this code we are allowing the docker container to fetch the data from our production folder where we are pulling our master branch data. Next we are allowing PATing so that we can connect to the container from outside of RHEL8 using port number 8082. Here is the command used in the execute shell of Production Deployment : https://github.com/raktim00/DevOps_Home_Work/blob/master/Production_Deploy_Execute_shell_code
  
 ![Production_deployment](Screenshots/Prod_deploy.png)
 
@@ -56,13 +57,13 @@
  
 ![Developer_job_1](Screenshots/Developer1.png)
 
- * Here also same concept only difference is here we select the Remote Trigger in Build Trigger cause using this we can trigger this job to work remotely as soon as we commit and push in our local git. Plus one thing here we are saving the files in Developer folder.
+ * Here also same concept only difference is here we select the Remote Trigger in Build Trigger cause using this we can trigger this job to work remotely as soon as we commit and push in our local git. Plus one thing here we are saving the files in Developer folder. Here is the command used in the execute shell of Developer : https://github.com/raktim00/DevOps_Home_Work/blob/master/Developer_execute_shell_code
  
 ![Developer_job_2](Screenshots/Developer2.png)
 
 ### 6. Creating the Developer Deployment Job in Jenkins :
 
- * Exactly same concept as previous cause we want the same environment as like Production Deployment. Only difference is here we changed the "Build after other project build" option to 'developer' and a little bit of change in build execute cell to start a new container.
+ * Exactly same concept as previous cause we want the same environment as like Production Deployment. Only difference is here we changed the "Build after other project build" option to 'developer' and a little bit of change in build execute cell to start a new container. Here is the command used in the execute shell of Developer Deployment : https://github.com/raktim00/DevOps_Home_Work/blob/master/Developer_Deploy_Execute_shell_code
  
 ![Developer_deployment](Screenshots/Dev_deploy.png)
 
@@ -74,7 +75,7 @@
  
 ![Merge_1](Screenshots/merge1.png)
 
- * Next give anything in build but remember that should execute otherwise jenkins not gonna work post-build which is the merging.
+ * Next give anything in build but remember that should execute otherwise jenkins not gonna work post-build which is the merging. Here is the command used in the execute shell of Merging : https://github.com/raktim00/DevOps_Home_Work/blob/master/Allow_merge_execute_shell_code 
  
 ![Merge_2](Screenshots/merge2.png)
 
