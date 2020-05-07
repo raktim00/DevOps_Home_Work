@@ -12,7 +12,7 @@
   * In Windows we need git bash software.
   * At the starting stop the firewalld in RHEL8 and start the docker and jenkins services.
 
-### Let's see step by step how to achieve this :
+## Let's see step by step how to achieve this :
   
 ### 1. Giving Jenkins all the power of Linux :
 
@@ -63,7 +63,7 @@
 
 ### 6. Creating the Developer Deployment Job in Jenkins :
 
- * Exactly same concept as previous cause we want the same environment as like Production Deployment. Only difference is here we changed the "Build after other project build" option to 'developer' and a little bit of change in build execute cell to start a new container. Here is the command used in the execute shell of Developer Deployment : https://github.com/raktim00/DevOps_Home_Work/blob/master/Developer_Deploy_Execute_shell_code
+ * Exactly same concept as previous cause we want the same environment as like Production Deployment. Only difference is here we changed the "Build after other project build" option to 'developer' and a little bit of change in build execute shell to start a new container. Here is the command used in the execute shell of Developer Deployment : https://github.com/raktim00/DevOps_Home_Work/blob/master/Developer_Deploy_Execute_shell_code
  
 ![Developer_deployment](Screenshots/Dev_deploy.png)
 
@@ -71,11 +71,11 @@
 
  * This is the button which we will use after testing our data in testing environment. This build gonna merge the 'dev' branch data into 'master' branch. And after that we don't have to worry cause within one minute Jenkins Production job and then Production Deployment job gonna make our thing available to use for public.
  
- * Here also same as before concept only just you have to provide jenkins your github credential otherwise it's not gonna be able to push our code after merging.
+ * Here also same pervious concept only difference is just you have to provide jenkins your github credential otherwise it's not gonna be able to push our code after merging.
  
 ![Merge_1](Screenshots/merge1.png)
 
- * Next give anything in build but remember that should execute otherwise jenkins not gonna work post-build which is the merging. Here is the command used in the execute shell of Merging : https://github.com/raktim00/DevOps_Home_Work/blob/master/Allow_merge_execute_shell_code 
+ * Next give anything in build but remember that should execute otherwise jenkins not gonna work post-build which will do the merging. Here is the command used in the execute shell of Merging : https://github.com/raktim00/DevOps_Home_Work/blob/master/Allow_merge_execute_shell_code 
  
 ![Merge_2](Screenshots/merge2.png)
 
@@ -85,7 +85,11 @@
  
 ### 8. Lastly one work in git :
  
- * You have to configure the git commit command for your 'dev' branch. Using this we gonna achieve two thing as soon as we commit 1. As soon as we commit 'git push' will automatically happen, 2. Remotely our git bash gonna trigger the Developer Job in Jenkins. For that go inside you `.git/hooks` folder and follow the below command to create the post-commit file.
+ * You have to configure the git commit command for your 'dev' branch. Using this we gonna achieve two thing as soon as we commit :
+   1. As soon as we commit 'git push' will automatically happen.
+   2. Remotely our git bash gonna trigger the Developer Job in Jenkins. 
+
+ For that go inside you `.git/hooks` folder and follow the below command to create the post-commit file.
 
 ![Post_commit](Screenshots/post-commit.png)
 
@@ -93,41 +97,41 @@
 
 ### 1st Observing the Production and Testing Environment at the initial stage.
 
-#### At port 8082 we have production environment. Initially both production and testing environment have the same data.
+ * At port 8082 we have production environment. Initially both production and testing environment have the same data.
 
 ![ProductionSite](Screenshots/Process2.png)
 
-#### Next we added few data in our 'dev' branch and commit. As post-commit is pre-configured that's we don't need to push or don't need to pull the trigger of jenkins. Here you can once again see the post-commit file's internal code.
+ * Next we added few data in our 'dev' branch and commit. As post-commit is pre-configured that's we don't need to push or don't need to pull the trigger of jenkins. Here you can once again see the post-commit file's internal code.
 
 ![Commit_in_dev_1](Screenshots/Process6.png)
 ![Commit_in_dev_2](Screenshots/Process7.png)
 
-#### On port no. 8081 our new updated 'dev' branch code is visible.
+ * On port no. 8081 our new updated 'dev' branch code is visible.
 
 ![Developer_Website](Screenshots/Process9.png)
 
-#### Now as we can see that everything is working file so now we can pull the trigger for the merging and this gonna merge our 'dev' branch data into master branch. 
+ * Now as we can see that everything is working fine so now we can pull the trigger for the merging and this gonna merge our 'dev' branch data into master branch. 
 
 ![Merge_triggering](Screenshots/Process11.png)
 
-#### Plus as our Jenkins Production Job keep on checking the master branch per minute so within 1 minute we can see that on port 8082 our webpage gets updated.
+ * Plus as our Jenkins Production Job keep on checking the master branch per minute so within 1 minute we can see that on port 8082 our webpage gets updated.
 
 ![Production_webpage](Screenshots/Process14.png)
 
-## Lastly one great thing without purchasing any public IP if you want to make your website available for public then use this ngrok program in linux.
+#### Lastly one great thing without purchasing any public IP if you want to make your website available for public then use this ngrok program in linux.
 
-### Firstly use `./ngrok httpd 8082` command in that particular folder where your ngrok program is located. Remember here I used httpd webserver and I allow 8082 port for production. 
+ * Firstly use `./ngrok http 8082` command in that particular folder where your ngrok program is located. Remember here I used httpd webserver and I allow 8082 port for production. 
 
 ![ngrok_run](Screenshots/Process15.png)
 
-### Go to any browser in the world which is connected to internet and paste the website address provided by ngrok and you will be able to see it.
+ * Go to any browser in the world which is connected to internet and paste the website address provided by ngrok and you will be able to see it.
 
 ![ngrok_webpage](Screenshots/Process16.png)
 
-# Future possibilities :
+## Future possibilities :
 
-* In future we can integrate the same concept in Cloud Services and in Hybrid Cloud.
-* Second thing we can use more great tools like Ansible Scripting to create more great environment.
-* Third we can create distributed setup on our own and can host our website on our own.
+ #### In future we can integrate the same concept in Cloud Services and in Hybrid Cloud.
+ #### Second thing we can use more great tools like Ansible Scripting to create more great environment.
+ #### Third we can create distributed setup on our own and can host our website on our own.
 
 ## Thank you so much Vimal Sir for teaching us these kinds of great technologies.
